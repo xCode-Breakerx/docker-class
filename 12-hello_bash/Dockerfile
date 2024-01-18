@@ -20,5 +20,4 @@ RUN rm index.sh
 EXPOSE 80
 
 # entry point command
-# TODO: make sure this command is actually correct
 CMD ["nginx", "-g", "daemon off;"]
