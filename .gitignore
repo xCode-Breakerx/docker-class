@@ -4,3 +4,5 @@
 demo
 
 /.idea/
+**/venv
+**/.idea

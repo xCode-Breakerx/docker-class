@@ -1,0 +1,47 @@
+services:
+  backend:
+    build: back
+    networks:
+      - exo13-network
+    
+    depends_on:
+      mysql:
+        condition: service_healthy # wait for mysql to start
+      redis:
+        condition: service_started
+  
+  mysql:
+    build: mysql
+    hostname: mysql
+    ports:
+      - "127.0.0.1:52000:52000"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: exo13
+      MYSQL_USER: exo13
+      MYSQL_PASSWORD: exo13
+      MYSQL_DATABASE: exo13_db
+      # exposing this port since I already have the default port used for other services on my machine
+      MYSQL_TCP_PORT: 52000
+    networks:
+      - exo13-network
+        
+    # mysql is slow af to start
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 5s
+      retries: 50
+  
+  
+  redis:
+    build: redis
+    restart: always
+    hostname: redis
+    ports:
+      - "127.0.0.1:6379:6379"
+    networks:
+      - exo13-network
+
+networks:
+  exo13-network:
+    
