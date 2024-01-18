@@ -1,0 +1,2 @@
+docker build -t bash .
+docker run -d -p 127.0.0.1:8000:80 --name bash bash
