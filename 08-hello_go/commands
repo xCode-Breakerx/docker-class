@@ -1,0 +1,2 @@
+docker build -t go .
+docker run -d -p 8080:8080 --name golang go

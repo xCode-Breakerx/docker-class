@@ -1,0 +1,8 @@
+# NOTE: Metabase takes some time to start, so when navigating to http://127.0.0.1:3000, it may say that the page is unresponsive for a few seconds after the container has started 
+
+# for the dockerfile version
+docker build -t meta .
+docker run -d -p 3000:3000 --name meta meta
+
+# same thing but with docker compose
+docker compose up -d

@@ -1,0 +1,2 @@
+docker build -t cpp .
+docker run -d --name cpp_is_the_best cpp

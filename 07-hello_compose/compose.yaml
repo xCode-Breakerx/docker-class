@@ -1,0 +1,57 @@
+services:
+  backend:
+    build: back/
+    working_dir: /app/back
+    volumes:
+      - ./back/:/app/back
+    networks:
+      - exo7-network
+    ports:
+      - "127.0.0.1:3021:3021"
+    environment:
+      POSTGRES_USER: doc
+      POSTGRES_PASSWORD: doc
+      POSTGRES_DB: doc
+      POSTGRES_HOST: doc
+      POSTGRES_PORT: 5432
+      PORT: 3021
+    depends_on:
+      sql-exo7:
+        condition: service_started
+  
+  sql-exo7:
+    build: pgdata/
+    restart: always
+    hostname: doc
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      POSTGRES_USER: doc
+      POSTGRES_PASSWORD: doc
+      POSTGRES_DB: doc
+      POSTGRES_PORT: 5432
+    volumes:
+      - data:/var/lib/postgresql
+    networks:
+      - exo7-network
+
+  front-exo7:
+    image: node:latest
+    command: "npm install"
+    ports:
+      - "127.0.0.1:3000:3000"
+    entrypoint: "npm run start"
+    working_dir: /app/front
+    volumes:
+      - ./front:/app/front
+    networks:
+      - exo7-network
+    depends_on:
+      backend:
+        condition: service_started
+
+networks:
+  exo7-network:
+
+volumes:
+  data:

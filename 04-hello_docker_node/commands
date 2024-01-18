@@ -1,0 +1,2 @@
+docker build -t exo4 .
+docker run --name exo4 -dp 127.0.0.1:3000:3000 exo4 

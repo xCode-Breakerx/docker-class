@@ -1,0 +1,6 @@
+services:
+  meta:
+    image: metabase/metabase:latest
+    ports:
+      - 127.0.0.1:3000:3000
+   

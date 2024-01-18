@@ -1,0 +1,8 @@
+docker build -t exo5 .
+docker run -d --name exo5 exo5
+docker exec -it exo5 sh
+
+# within the interactive shell
+psql -U postgres
+\c exo5 # <--- db name
+select * from personnes where age > 30;

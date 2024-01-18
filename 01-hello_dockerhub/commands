@@ -1,0 +1,2 @@
+docker pull --platform linux/arm64 docsseo91/stardocker:v1
+docker run --platform linux/arm64 docsseo91/stardocker:v1

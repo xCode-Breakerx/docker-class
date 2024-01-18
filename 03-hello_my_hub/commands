@@ -1,0 +1,5 @@
+# commands executed from the folder of exercise 2
+docker build -t exo2 .
+docker tag exo2 xcodebreakerx/docker-exo3:tag_exo_v3_v1
+docker push xcodebreakerx/docker-exo3:tag_exo_v3_v1
+

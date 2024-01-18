@@ -1,0 +1,2 @@
+docker build -t exo2 .
+docker run -dp 127.0.0.1:7969:7969 exo2

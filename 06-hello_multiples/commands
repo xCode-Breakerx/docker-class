@@ -1,0 +1,10 @@
+# inside the db sub-folder
+docker build -t sql6 .
+docker run -d -p 127.0.0.1:5432:5432 --name sql6 --network exo6-network --network-alias exo6-network --hostname db sql6 
+
+# inside the root folder of exercise 6
+docker network create exo6-network
+docker build -t server6 .
+docker run -d -p 127.0.0.1:3000:3000 --name server6 --network exo6-network server6
+
+
